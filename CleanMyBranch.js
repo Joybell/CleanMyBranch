@@ -13,6 +13,7 @@ class CleanMyBranch {
 
   async run() {
     try {
+      const jiraDomain = 'jira.atlassian.com'
       const account = await this.getAccount()
 
       if (!account) {
@@ -76,7 +77,7 @@ class CleanMyBranch {
     try {
       const result = await axios({
         method: 'post',
-        url: `http://jira.wemakeprice.com/rest/auth/1/session`,
+        url: `http://${this.jiraDomain}/rest/auth/1/session`,
         data: {
           username: account.username,
           password: account.password
@@ -131,7 +132,7 @@ class CleanMyBranch {
     try {
       return await axios({
         method: 'get',
-        url: `http://jira.wemakeprice.com/rest/api/2/issue/${issue}`,
+        url: `http://${this.jiraDomain}/rest/api/2/issue/${issue}`,
         headers: {
           Authorization: `Basic ${this.encodedAccount}`
         }
