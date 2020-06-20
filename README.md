@@ -6,7 +6,7 @@
 ## 설치
 > 프로젝트 그룹 폴더에 설치
 > 
-> git clone https://stash.wemakeprice.com/scm/~joybell/cleanmybranch.git
+> git clone https://github.com/Joybell/CleanMyBranch.git
 > 
 > cd cleanmybranch
 > 
