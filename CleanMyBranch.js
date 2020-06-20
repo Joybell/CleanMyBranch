@@ -7,25 +7,24 @@ const colors = require('colors')
 
 class CleanMyBranch {
   constructor() {
+    const jiraDomain = 'jira.atlassian.com'
     this.encodedAccount = ''
     this.run()
   }
 
   async run() {
     try {
-      const jiraDomain = 'jira.atlassian.com'
+      const projectList = await this.getProjectList()
+      const chooseProject = await this.getProject(projectList)
       const account = await this.getAccount()
 
       if (!account) {
-        throw 'JIRA 로그인 실패'
+        throw 'JIRA Login Failed'
       }
 
       this.encodedAccount = new Buffer(`${account.username}:${account.password}`).toString('base64')
-    
-      const projectList = await this.getProjectList()
-      const chooseProject = await this.getProject(projectList)
-      const branchList = await this.getBranchList(chooseProject.project)
 
+      const branchList = await this.getBranchList(chooseProject.project)
       const itemList = branchList.stdout.split('\n').map(x => ({
         branch: x.replace('*', '').trim(),
         jira: x.match(/(?<=\/)[A-Z]*\-[0-9]*/g)
@@ -48,7 +47,7 @@ class CleanMyBranch {
           
             this.print(`${jiraId} => ${jiraStatus}`)
   
-            if (['Closed', 'Close', '종료'].includes(jiraStatus)) {
+            if (['Closed', 'Close'].includes(jiraStatus)) {
               this.print(`delete branch: ${item.branch}`, 'red')
               await this.deleteBranch(item.branch)
             }
@@ -56,7 +55,7 @@ class CleanMyBranch {
         }
       })
     } catch (e) {
-      this.print(e, 'red')
+      this.print(`\n${e}\n`, 'red')
     }
   }
 
@@ -99,7 +98,7 @@ class CleanMyBranch {
       shell.cd('../')
       fs.readdir('./', (err, itemList) => {
         itemList.forEach(item => {
-          if (!['.git', '.DS_Store', 'cleanmybranch'].includes(item)) {
+          if (!['.git', '.DS_Store', 'CleanMyBranch'].includes(item)) {
             if (fs.lstatSync(item).isDirectory()) {
               projectList.push(item)
             }
