@@ -7,7 +7,7 @@
 
 ## 설치
 > 프로젝트 그룹 폴더에 설치
-> 
+>
 > git clone https://github.com/Joybell/CleanMyBranch.git
 > 
 > cd cleanmybranch
