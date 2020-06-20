@@ -6,7 +6,7 @@
 > 종료된 이슈의 로컬/리모트 브랜치를 삭제하는 스크립트
 
 ## 설치
-> 프로젝트 그룹 폴더에 설치
+> node, npm 설치후 프로젝트 그룹 폴더에 git clone 실행
 >
 > git clone https://github.com/Joybell/CleanMyBranch.git
 > 
