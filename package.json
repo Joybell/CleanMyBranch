@@ -1,0 +1,22 @@
+{
+  "name": "clean_my_branch",
+  "version": "1.0.0",
+  "description": "",
+  "main": "CleanMyBranch.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://stash.wemakeprice.com/scm/~joybell/joybell.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "colors": "^1.4.0",
+    "fs": "0.0.1-security",
+    "inquirer": "^7.2.0",
+    "shelljs": "^0.8.4"
+  }
+}
