@@ -7,7 +7,7 @@ const colors = require('colors')
 
 class CleanMyBranch {
   constructor() {
-    const jiraDomain = 'jira.atlassian.com'
+    this.jiraDomain = 'jira.atlassian.com'
     this.encodedAccount = ''
     this.run()
   }
